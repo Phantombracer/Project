@@ -1,6 +1,10 @@
 import requests
 
-wishlist = [235460, 606160, 2114740]
+def load_wishlist():
+    with open("wishlist.txt", "r") as file:
+        return [int(line.strip()) for line in file]
+
+wishlist = load_wishlist()
 
 def check_game_discount(game_id):
 
@@ -35,7 +39,7 @@ def check_game_discount(game_id):
     else:
         print("Гра безкоштовна або ціна недоступна")
 
-    print("_____________________")
+    print("====================")
 
 
 for game in wishlist:
