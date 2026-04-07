@@ -1,4 +1,5 @@
 import requests
+import time
 
 def load_wishlist():
     wishlist = []
@@ -7,8 +8,6 @@ def load_wishlist():
             game_id, desired_price = line.strip().split(",")
             wishlist.append((int(game_id), float(desired_price)))
     return wishlist
-
-wishlist = load_wishlist()
 
 def check_game_discount(game_id, desired_price):
 
@@ -53,6 +52,16 @@ def check_game_discount(game_id, desired_price):
 
     print("====================")
 
+wishlist = load_wishlist()
 
-for app_id, desired_price in wishlist:
-    check_game_discount(app_id, desired_price)
+
+interval = int(input("Введи інтервал перевірки (в секундах): "))
+
+while True:
+    
+    for game_id, desired_price in wishlist:
+        check_game_discount(game_id, desired_price)
+
+    print(f"Очікування {interval} секунд...\n")
+
+    time.sleep(interval)
